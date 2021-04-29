@@ -3,18 +3,22 @@
     composant pour filtrer!
 
     <input type="text" v-model="searchString" />
+
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
 export default {
   name: 'Filtering',
-  props: {
-    modelValue: Array,
+  data(){
+    return {
+      searchString: '',
+    }
   },
-  computed:{
-
+  watch: {
+    searchString(value){
+      this.$store.dispatch('searchStringUpdated', value)
+    }
   }
 }
 </script>

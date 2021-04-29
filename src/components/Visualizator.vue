@@ -1,24 +1,24 @@
 <template>
   <div class="visualizator">
-    <Filtering v-model="people" />
+    <Filtering />
     je vais afficher un tableau de données ici!
-    <Datatable :data="people" />
+    <Datatable :data="filteredData" />
+    
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import Datatable from './Datatable.vue'
 import Filtering from './Filtering.vue'
+
 export default {
-  components: { Datatable, Filtering },
   name: 'Visualizator',
-  props: {
-    msg: String
-  },
+  components: { Datatable, Filtering },
   computed:{
 
     ...mapState(['people']),
+    ...mapGetters(['filteredData']),
 
   }
 }
