@@ -4,13 +4,15 @@ export default createStore({
   state: {
     people: [],
     searchString: '',
+    filterColumn: null,
+    filterValue: null,
   },
   getters: {
     filteredData(state){
       //console.log()
       return state.people
-        .filter((person)=>
-          objectToString(person).toLowerCase().includes(state.searchString.toLowerCase()))
+        .filter((person)=>!state.filterColumn || !state.filterValue || person.preferences[state.filterColumn] === state.filterValue)
+        .filter((person)=>objectToString(person).toLowerCase().includes(state.searchString.toLowerCase()))
     }
   },
   mutations: {
@@ -19,6 +21,10 @@ export default createStore({
     },
     setSearchString(state, value){
       state.searchString = value;
+    },
+    setFilter(state, value){
+      state.filterColumn = value.column;
+      state.filterValue = value.value;
     }
   },
   actions: {
@@ -29,7 +35,10 @@ export default createStore({
     },
     searchStringUpdated(store, value){
       store.commit('setSearchString', value)
-    }
+    },
+    filterUpdated(store, value){
+      store.commit('setFilter', value)
+    },
   },
   modules: {
   }

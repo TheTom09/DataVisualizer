@@ -10,6 +10,9 @@
           <th>Gender</th>
           <th>Email</th>
           <th>Address</th>
+          <th>Fav Fruit</th>
+          <th>Fav Pet</th>
+          <th>Fav Color</th>
         </tr>
       </thead>
       <tbody>
@@ -18,6 +21,9 @@
           <td>{{row.gender}}</td>
           <td>{{row.contact.email}}</td>
           <td>{{row.contact.address}}</td>
+          <td>{{row.preferences.favorite_fruit}}</td>
+          <td>{{row.preferences.favorite_pet}}</td>
+          <td>{{row.preferences.favorite_color}}</td>
         </tr> 
       </tbody>
 
