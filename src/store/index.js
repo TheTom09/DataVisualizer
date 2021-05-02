@@ -9,8 +9,8 @@ export default createStore({
     filteredData(state){
       //console.log()
       return state.people
-      .filter((person)=>
-        Object.values(person).join(' ').toLowerCase().includes(state.searchString.toLowerCase()))
+        .filter((person)=>
+          objectToString(person).toLowerCase().includes(state.searchString.toLowerCase()))
     }
   },
   mutations: {
@@ -34,3 +34,9 @@ export default createStore({
   modules: {
   }
 })
+
+function objectToString(obj) {
+  return Object.values(obj)
+    .map((v)=>typeof v === 'object' ? objectToString(v) : v)
+    .join('  ');
+}
