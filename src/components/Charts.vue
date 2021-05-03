@@ -1,37 +1,45 @@
 <template>
-  <div class="container">
-    <div class="buttons">
-      <button class="pie" :class="{active: type === 'pie'}" @click="type = 'pie'" title="Pie"><i/></button>
-    </div>
-    <div class="chart-container">
-      <PieChart v-if="type === 'pie'" :rows="rows" :col="col" @updateFilter="$emit('updateFilter', $event)"/>
-    </div>
+  <div>
+    je vais afficher des charts
+    
+
+    <PieChart :chartData="{datasets: [{data:[1,2,3,4,5]}], labels: ['A', 'B', 'C', 'D', 'E']}" :options="{}" />
+ 
   </div>
 </template>
 
 <script>
-  /* eslint-disable max-len */
-  import PieChart from './PieChart.vue';
 
-  export default {
-    name: 'ChartWrapper',
-    components: {
-      PieChart,
+import PieChart from './PieChart.vue';
+
+export default {
+  name: 'Charts',
+  components: {PieChart},
+  props:{
+    data: Array,
+  },
+  computed: {
+    countries(){
+      return this.aggregatedDataForColumn(this.data, 'contact.country')
     },
-    props: {
-      rows: Array,
-      col: Object,
+    genders(){
+      return this.aggregatedDataForColumn(this.data, 'gender')
     },
-    emits: ['updateFilter'],
-    data() {
-      return {
-        type: 'pie',
-      };
+    pets(){
+      return this.aggregatedDataForColumn(this.data, 'preferences.favorite_pet')
     },
-    mounted() {
-      this.type = this.col.defaultChartType || 'pie';
+    fruits(){
+      return this.aggregatedDataForColumn(this.data, 'preferences.favorite_fruit')
     },
-  };
+    colors(){
+      return this.aggregatedDataForColumn(this.data, 'preferences.favorite_color')
+    },
+  },
+  methods: {
+    aggregatedDataForColumn(data, column){
+    },
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
