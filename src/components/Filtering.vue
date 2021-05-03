@@ -1,5 +1,5 @@
 <template>
-  <div class="filtering">
+  <div>
     composant pour filtrer!
 
     <input type="text" v-model="searchString" />

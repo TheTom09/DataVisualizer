@@ -1,5 +1,5 @@
 <template>
-  <div class="datatable">
+  <div>
     voila mon composant tableau
 
     <table>

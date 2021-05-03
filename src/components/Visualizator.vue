@@ -1,9 +1,9 @@
 <template>
-  <div class="visualizator">
+  <div>
     <Filtering />
     je vais afficher un tableau de données ici!
     <Datatable :data="filteredData" />
-    
+    <Charts :data="filteredData"/>
   </div>
 </template>
 
@@ -11,10 +11,11 @@
 import { mapGetters, mapState } from 'vuex'
 import Datatable from './Datatable.vue'
 import Filtering from './Filtering.vue'
+import Charts from './Charts.vue'
 
 export default {
   name: 'Visualizator',
-  components: { Datatable, Filtering },
+  components: { Datatable, Filtering, Charts },
   computed:{
 
     ...mapState(['people']),
