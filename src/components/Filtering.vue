@@ -16,6 +16,8 @@
       <option v-for="opt in options[column]" :key="opt">{{opt}}</option>
     </select>
 
+    <button @click="resetFilter">Reset Filters</button>
+
   </div>
 </template>
 
@@ -40,7 +42,13 @@ export default {
     },
     value(value){
       this.$store.dispatch('filterUpdated', {column:this.column, value:value})
-    }
+    },
+  },
+  methods:{
+    resetFilter(){
+      this.searchString = '';
+      this.$store.dispatch('resetFilter')
+    },
   }
 }
 </script>

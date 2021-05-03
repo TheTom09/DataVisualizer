@@ -39,6 +39,9 @@ export default createStore({
     filterUpdated(store, value){
       store.commit('setFilter', value)
     },
+    resetFilter(store){
+      store.commit('setFilter', {column: null, value: null})
+    },
   },
   modules: {
   }
