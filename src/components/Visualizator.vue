@@ -1,7 +1,7 @@
 <template>
   <div>
     <Filtering />
-    je vais afficher un tableau de données ici!
+    Voici mes différents composants :
     <Datatable :data="filteredData" />
     <Charts :data="filteredData"/>
   </div>

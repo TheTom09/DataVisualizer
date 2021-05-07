@@ -1,6 +1,6 @@
 <template>
   <div>
-    voila mon composant pagination
+    Pagination :
 
     <ul>
       <li v-for="(p, index) in pages" :key="index" @click="changePage(index)" :class="{active: index === offset / limit}">
@@ -51,9 +51,9 @@ ul li{
   cursor: pointer;
 }
 ul li:hover{
-  background-color: rgb(185, 185, 185);
+  background-color: #DCF6F9;
 }
 ul li.active{
-  background-color: rgb(110, 110, 110);
+  background-color: #00BBDB;
 }
 </style>

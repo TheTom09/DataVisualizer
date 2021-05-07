@@ -1,6 +1,6 @@
 <template>
   <div>
-    voila mon composant tableau
+    Tableau :
 
     <table>
 

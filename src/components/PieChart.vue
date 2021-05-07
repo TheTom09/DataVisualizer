@@ -56,7 +56,7 @@ export default {
               datasets: [{
                 data: this.data,
                 backgroundColor: this.generateColors(this.data/length, backgroundColor),
-                borderColor: this.generateColors(this.data.length, borderColor),
+                borderColor: this.generateColors(this.data.length,),
                 borderWidth: 1
               }]
             },

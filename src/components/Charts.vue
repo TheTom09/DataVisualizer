@@ -1,42 +1,65 @@
 <template>
   <div>
-    je vais afficher des charts
-    
+    je vais afficher des charts ( partie bloqué :)
 
-    <PieChart :chartData="{datasets: [{data:[1,2,3,4,5]}], labels: ['A', 'B', 'C', 'D', 'E']}" :options="{}" />
- 
+
+    <PieChart title="Countries" :labels="countries.labels"  :data="countries.data" :options="{}" />
+
+    <PieChart title="Gender" :labels="genders.labels"  :data="genders.data" :options="{}" />
+
+    <PieChart title="Pets" :labels="pets.labels"  :data="pets.data" :options="{}" />
+
+    <PieChart title="Fruits" :labels="fruits.labels"  :data="fruits.data" :options="{}" />
+
+    <PieChart title="Colors" :labels="colors.labels"  :data="colors.data" :options="{}" />
+
   </div>
 </template>
 
 <script>
-
-import PieChart from './PieChart.vue';
-
+import PieChart from "@/components/PieChart";
 export default {
   name: 'Charts',
   components: {PieChart},
   props:{
     data: Array,
   },
-  computed: {
+  computed:{
     countries(){
-      return this.aggregatedDataForColumn(this.data, 'contact.country')
+      return this.aggregateDataForColumn(this.data, 'contact.country')
     },
     genders(){
-      return this.aggregatedDataForColumn(this.data, 'gender')
+      return this.aggregateDataForColumn(this.data, 'gender')
     },
     pets(){
-      return this.aggregatedDataForColumn(this.data, 'preferences.favorite_pet')
+      return this.aggregateDataForColumn(this.data, 'preferences.favorite_pet')
     },
     fruits(){
-      return this.aggregatedDataForColumn(this.data, 'preferences.favorite_fruit')
+      return this.aggregateDataForColumn(this.data, 'preferences.favorite_fruit')
     },
     colors(){
-      return this.aggregatedDataForColumn(this.data, 'preferences.favorite_color')
+      return this.aggregateDataForColumn(this.data, 'preferences.favorite_color')
     },
   },
-  methods: {
-    aggregatedDataForColumn(data, column){
+  methods:{
+    aggregateDataForColumn(data, column){
+      let result = data.reduce((acc, obj)=>{
+        let keyValue = this.findValueAtPath(obj, column);
+        if(!acc[keyValue]){
+          acc[keyValue] = 1;
+        }else{
+          acc[keyValue]++;
+        }
+        return acc;
+      }, {})
+      return { labels:Object.keys(result), data:Object.values(result) }
+    },
+    findValueAtPath(obj, path, defaultValue = '') {
+      const value = path.split('.')
+          .reduce(function(acc, part) {
+            return acc && acc[part];
+          }, obj);
+      return value !== null && value !== undefined ? value : defaultValue;
     },
   }
 }

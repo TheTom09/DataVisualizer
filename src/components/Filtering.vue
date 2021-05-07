@@ -1,17 +1,17 @@
 <template>
   <div>
-    composant pour filtrer!
+    Filtre :
 
     <input type="text" v-model="searchString" />
 
-    <label for="column">favorite</label>
+    <label for="column"> favorite</label>
     <select name="column" v-model="column">
       <option value="favorite_fruit">Fruit</option>
       <option value="favorite_color">Color</option>
       <option value="favorite_pet">Pet</option>
     </select>
 
-    <label for="value">equal</label>
+    <label for="value"> equal</label>
     <select name="value" v-model="value">
       <option v-for="opt in options[column]" :key="opt">{{opt}}</option>
     </select>
